@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<script src="vendor/js/Three.js"></script>
+		<script src="vendor/js/RequestAnimationFrame.js"></script>
+		<script src="vendor/js/Stats.js"></script>
+		<script src="vendor/js/Detector.js"></script>
+		<script src="vendor/js/jquery.min.js"></script>
+		<script src="vendor/js/jquery.tmpl.min.js"></script>		
+		<script src="vendor/js/threex.sparks.js"></script>
+		<script src="vendor/js/threex.fullScreen.js"></script>
+		<script src="vendor/js/THREEx.WindowResize.js"></script>
+
+		<script src="./vendor/sparks.js/Sparks.js"></script>
+		<script src="./vendor/sparks.js/examples/js/Tween.js"></script>
+		
+		<script src="./vendor/codemirror/lib/codemirror.js"></script>
+		<link  href="./vendor/codemirror/lib/codemirror.css" rel="stylesheet">
+		<link  href="./vendor/codemirror/theme/default.css" rel="stylesheet">
+		<link  href="./vendor/codemirror/theme/cobalt.css" rel="stylesheet">
+		<link  href="./vendor/codemirror/theme/night.css" rel="stylesheet">
+		<script src="./vendor/codemirror/mode/javascript/javascript.js"></script>
+
+		<link rel="stylesheet" href="css/editor.css" />
+		<link rel="stylesheet" href="css/main.css" />
+
+	</head>
+<body>
+    	<div id="container"></div> 
+    	<div id="osdLayer">
+	    	<div class="icontainer">
+			<span class="button fullscreen right">fullscreen</span>
+			<span class="button screenshot right">screenshot</span>
+			<span class="button editor left">code</span>
+			<span class="button export left">export</span>
+			<span class="shorturl left" style="display: none;">
+				<input type="text" size="20" />
+			</span>
+			<div id="editor"></div>
+		</div>
+			<!-- screenshotWindow -->
+			<div class="screenshotWindow" style="display:none;">
+				<div style="width: 100%; height: 100%; cursor: wait; font-family: arial; background: black;">
+					<center>
+						<h1>Uploading your
+						<a href="https://github.com/zz85/sparks.js" target="_blank">Sparks.js</a>
+						effect screenshot to imgur</h1>
+						<h2>Please Wait ...</h2>
+						<img src='' width="100%"></img>
+					</center>
+				</div>
+			</div>
+	</div>
+	<div class="info">
+		<a href="http://learningthreejs.com/" target="_blank">LearningThree.js</a>
+		- Online Particle Editor
+		<br/>
+		Use
+		<a href="https://github.com/zz85/sparks.js/" target="_blank">Sparks.js</a>
+		and
+		<a href="https://github.com/mrdoob/three.js/" target="_blank">Three.js</a>
+	</div> 	
+	<script src="js/main.js"></script>
+	<script src="js/editor.js"></script>
+</body>
+</html>

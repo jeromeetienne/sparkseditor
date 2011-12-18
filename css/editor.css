@@ -1,0 +1,80 @@
+#osdLayer {
+	font-size	: 130%;
+
+	margin		: 0em;
+	padding		: 0em;
+
+	position	: absolute;
+	top		: 0px;
+	left		: 0px;
+	width		: 100%;
+}
+
+#osdLayer .icontainer {
+	position	:relative;
+	padding		: 1em;
+	padding-top	: 1.5em;
+
+}
+
+#osdLayer .right {
+	float	: right;
+}
+
+#osdLayer .left {
+	float	: left;
+}
+
+#osdLayer .button {
+	font-family	: Monospace;
+	font-size	: 16px;
+
+	color		: #808080;
+	background	: rgba(64,64,64, 0.8);
+
+	padding		: 0.4em;
+	margin		: 0.2em;
+	margin-bottom	: 1em;
+
+	border-radius	: 5px;	
+}
+
+#osdLayer .button:hover {
+	cursor		: pointer;
+	background	: rgba(96,96,96, 0.8);
+	color		: #FFFFFF;
+}
+
+#osdLayer .shorturl {
+	font-family	: Monospace;
+	font-size	: 16px;
+
+	padding		: 0.4em;
+	margin		: 0.2em;
+	background	: rgba(64,64,64, 0.8);
+	border-radius	: 12px;	
+	color		: #808080;
+}
+
+
+/********************************************************************************/
+/* 										*/
+/********************************************************************************/
+
+#osdLayer #editor {
+	margin-top	: 1em;
+}
+
+.cm-s-cobalt {
+	background	: rgba(0,34,64, 0.5)
+}
+.cm-s-night {
+	background	: rgba(0,0,0, 0.5)
+}
+
+.CodeMirror-scroll {
+	border-radius	: 15px;
+	width		: 100%;
+	height		: 30em;
+}
+

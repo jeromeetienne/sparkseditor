@@ -1,0 +1,30 @@
+body {
+	background	: #000000;
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+}
+
+div.info {
+	position	: absolute;
+	top		: 0.5em;
+	left		: 50%;
+	margin-left	: -12em;
+
+	color		: #f0f0f0;
+
+	text-align	: center;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size	: 16px;
+	font-weight	: bold;
+}
+
+div.info a {
+	color		: #c0c0f0;
+	text-decoration	: none;
+}
+div.info a:hover {
+	text-decoration	: underline;
+}
+
