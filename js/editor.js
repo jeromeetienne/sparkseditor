@@ -51,7 +51,7 @@ var optionsLoad	= function(){
 //////////////////////////////////////////////////////////////////////////////////
 
 // default effect
-var value = ""+
+var originalText = ""+
 "threexSparks	= new THREEx.Sparks({\n"+
 "	maxParticles	: 400,\n"+
 "	counter		: new SPARKS.SteadyCounter(300)\n"+
@@ -96,8 +96,6 @@ var updateText= function(){
 	// restart it 
 	threexSparks.emitter().start();	
 	scene.add(threexSparks.container());
-	
-	optionsSave();
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +103,7 @@ var updateText= function(){
 //////////////////////////////////////////////////////////////////////////////////
 
 var editor	= CodeMirror(document.getElementById('editor'), {
-	value		: value,
+	value		: originalText,
 	mode		: "javascript",
 	theme		: 'night',
 
@@ -113,7 +111,11 @@ var editor	= CodeMirror(document.getElementById('editor'), {
 	tabSize		: 8,
 	indentWithTabs	: true,
 	
-	onChange	: updateText
+	onChange	: function(){
+		updateText()
+		optionsSave();
+	}
+	
 });
 
 
@@ -199,7 +201,6 @@ jQuery("#osdLayer .button.fullscreen").click(function(){
 	}	
 });
 if( !THREEx.FullScreen.available() )	jQuery("#osdLayer .button.fullscreen").hide();
-
 
 
 //////////////////////////////////////////////////////////////////////////////////
