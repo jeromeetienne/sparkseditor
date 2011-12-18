@@ -58,14 +58,28 @@ var editor	= CodeMirror(document.getElementById('editor'), {
 });
 
 var optionsSave	= function(){
+	console.log("Saving options to url...")
 	var textValue	= editor.getValue();
 	var options	= {
-		textValue	: textValue
+		textValue	: textValue,
+		camera		: {
+			position	: {
+				x	: camera.position.x,
+				y	: camera.position.y,
+				z	: camera.position.z
+			},
+			rotation	: {
+				x	: camera.rotation.x,
+				y	: camera.rotation.y,
+				z	: camera.rotation.z
+			}
+		}
 	};
 	location.hash	= '#j/'+JSON.stringify(options);	
 }
 var optionsLoad	= function(){
 	if( !location.hash )	return;
+	console.log("Loading options from url...")
 	if( location.hash.substring(0,3) === "#j/" ){
 		var optionsJSON	= location.hash.substring(3);
 		var options	= JSON.parse(optionsJSON);
@@ -73,16 +87,26 @@ var optionsLoad	= function(){
 		console.assert(false);
 	}
 
-	editor.setValue( options.textValue );
+	if( options.textValue ){
+		editor.setValue( options.textValue );
+	}
+	if( options.camera ){
+		camera.position.x	= options.camera.position.x;
+		camera.position.y	= options.camera.position.y;
+		camera.position.z	= options.camera.position.z;
+		camera.rotation.x	= options.camera.rotation.x;
+		camera.rotation.y	= options.camera.rotation.y;
+		camera.rotation.z	= options.camera.rotation.z;
+	}
 }
 
 optionsLoad();
 jQuery("#editor").hide();
+updateText();
 
 jQuery("#osdLayer .button.editor").click(function(){	
 	jQuery("#editor").toggle();
 });
-
 
 jQuery("#osdLayer .button.export").click(function(){
 	var isVisible	= jQuery('#osdLayer .shorturl').css('display') !== 'none';
@@ -112,15 +136,41 @@ jQuery("#osdLayer .button.export").click(function(){
 	);
 });
 
-//jQuery("#osdLayer .button.editor").click(function(){	
-
 jQuery(document).bind('keypress', function(event){
 	console.log("keypress", event.keyCode)
 	// alt-h == 204
 	if( event.keyCode !== 204 )	return;
 	event.preventDefault();  
 	jQuery("#editor").toggle();
-})
+});
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//										//
+//////////////////////////////////////////////////////////////////////////////////
+
+// monitor camera move and save it in url if needed
+(function(){
+	// cache old value
+	var oldPosition	= camera.position.clone();
+	var oldRotation	= camera.rotation.clone();
+	setInterval(function(){
+		// check values changed
+		var changePos	= camera.position.clone().subSelf(oldPosition).length() > 0;
+		var changeRot	= camera.rotation.clone().subSelf(oldRotation).length() > 0;
+		if( !changePos && !changeRot )	return;
+		// cache old value
+		oldPosition	= camera.position.clone();
+		oldRotation	= camera.rotation.clone();
+		// save options
+		optionsSave();
+	}, 1000);	
+})();
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//										//
+//////////////////////////////////////////////////////////////////////////////////
 
 // handle fullscreen
 jQuery("#osdLayer .button.fullscreen").click(function(){
@@ -131,6 +181,12 @@ jQuery("#osdLayer .button.fullscreen").click(function(){
 	}	
 });
 if( !THREEx.FullScreen.available() )	jQuery("#osdLayer .button.fullscreen").hide();
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//										//
+//////////////////////////////////////////////////////////////////////////////////
 
 // handle screenshot
 jQuery("#osdLayer .button.screenshot").click(function(){
@@ -177,5 +233,21 @@ jQuery("#osdLayer .button.screenshot").click(function(){
 		win.close();
 	});
 });
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//										//
+//////////////////////////////////////////////////////////////////////////////////
+
+// kludge to get editor height
+// - this should be done via css but i failed to make it happen
+var updateEditorHeight	= function(){
+	var heightStr	= jQuery("body").css('height');
+	var bodyHeight	= parseInt(heightStr.substring(0, heightStr.length-2));
+	var scrollHeight= bodyHeight - 100;
+	jQuery(".CodeMirror-scroll").css('height', scrollHeight+'px');
+}
+updateEditorHeight();
+window.addEventListener('resize', updateEditorHeight, false);
 
 

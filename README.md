@@ -1,0 +1,1 @@
+an editor for [sparks.js](https://github.com/zz85/sparks.js/)
