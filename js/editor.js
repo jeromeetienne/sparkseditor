@@ -94,9 +94,10 @@ var optionsLoad	= function(){
 		camera.position.x	= options.camera.position.x;
 		camera.position.y	= options.camera.position.y;
 		camera.position.z	= options.camera.position.z;
+		// TODO camera.rotation doesnt work... i have to store controls position.
 		camera.rotation.x	= options.camera.rotation.x;
 		camera.rotation.y	= options.camera.rotation.y;
-		camera.rotation.z	= options.camera.rotation.z;
+		camera.rotation.z	= options.camera.rotation.z; 
 	}
 }
 
@@ -153,6 +154,7 @@ jQuery(document).bind('keypress', function(event){
 (function(){
 	// cache old value
 	var oldPosition	= camera.position.clone();
+	// TODO camera.rotation doesnt work... i have to store controls position.
 	var oldRotation	= camera.rotation.clone();
 	setInterval(function(){
 		// check values changed
