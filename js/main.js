@@ -7,17 +7,20 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var threexSparks;
 
-init();
-animate();
+if( !init() ){
+	animate();
+}
+
 function init(){
-	if( true ){
+	if( Detector.webgl ){
 		renderer = new THREE.WebGLRenderer({
 			antialias		: true,
 			preserveDrawingBuffer	: true
 		});
 		renderer.setClearColor( 0x000000, 1 );
 	}else{
-		renderer	= renderer = new THREE.CanvasRenderer();
+		Detector.addGetWebGLMessage();
+		return true;
 	}
 	renderer.setSize( window.innerWidth, window.innerHeight );
 
