@@ -18,6 +18,9 @@ div.info {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size	: 16px;
 	font-weight	: bold;
+
+	-webkit-user-select	: none;
+	-moz-user-select	: none;
 }
 
 div.info a {

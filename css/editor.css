@@ -8,13 +8,13 @@
 	top		: 0px;
 	left		: 0px;
 	width		: 100%;
+-webkit-user-select	: none;
 }
 
 #osdLayer .icontainer {
 	position	:relative;
 	padding		: 1em;
 	padding-top	: 1.5em;
-
 }
 
 #osdLayer .right {
